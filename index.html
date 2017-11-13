@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Memes
+	</title>
+<style>
+* {
+	user-select: none;
+}
+img {
+	transition: all 0.1s linear;
+	height: 100%;
+	width: 100%;
+}
+.cont {
+	height: 50%;
+	left: 50%;
+	position: fixed;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 50%;
+}
+#clicks {
+	color: #111111;
+	font-family: Comic Sans;
+	font-size: 10vh;
+	left: 50%;
+	position: fixed;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+</style>
+</head>
+<body>
+<div class="cont">
+	<img src="memes.jpg">
+	<div id="clicks">
+		0
+	</div>
+</div>
+</body>
+<script>
+var clicks = +localStorage.getItem('clicksLS') || 0;
+var total = 0;
+document.body.onclick = function () {
+	clicks += 1;
+	localStorage.setItem('clicksLS', clicks);
+};
+setInterval(function () {
+	document.getElementsByTagName('img')[0].style.transform = 'rotate(' + total + 'deg)';
+	document.getElementById('clicks').innerHTML = clicks;
+	total += clicks;
+}, 100);
+</script>
+</html>
